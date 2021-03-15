@@ -13,7 +13,7 @@ export const LoginScreen = () => {
                     type="text"
                     placeholder="Email"
                     name="email"
-                    autoComplete="off"asd
+                    autoComplete="off"
                 />
 
                 <input 
