@@ -1,29 +1,57 @@
-import React from 'react'
+import React from 'react';
+import moment from 'moment'
+import { activeNote } from '../../actions/notes';
+import { useDispatch } from 'react-redux';
 
-export const JournalEntry = () => {
+export const JournalEntry = ({
+    id,
+    date,
+    title,
+    body,
+    url,
+    note
+}) => {
+
+    const noteDate = moment( date );
+
+    const dispatch = useDispatch();
+
+    const handleEntryClick = () => {
+
+        dispatch( activeNote(id, note) );
+        
+    }
+
     return (
-        <div className="journal__entry pointer">
-            <div
-                className="journal__entry-picture"
-                style={{
-                    backgroundSize: 'cover',
-                    backgroundImage: 'url(https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png)'
-                }}
-            ></div>
+        <div
+            className="journal__entry pointer"
+            onClick={ handleEntryClick }
+        >
+            
+            {
+                url &&
+                <div
+                    className="journal__entry-picture"
+                    style={{
+                        backgroundSize: 'cover',
+                        backgroundImage: `url(${ url })`
+                    }}
+                ></div>
+            }
 
             <div className="journal__entry-body">
                 <p className="journal__entry-title">
-                    Un nuevo día
+                    { title }
                 </p>
 
                 <p className="journal__entry-content">
-                    Lorem ipsum
+                    { body }
                 </p>
             </div>
 
             <div className="journal__entry-date-box">
-                <span>Monday</span>
-                <h4>28</h4>
+                <span>{ noteDate.format('dddd') }</span>
+                <h4>{ noteDate.format('Do') }</h4>
             </div>
         </div>
     )
