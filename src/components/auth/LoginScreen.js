@@ -32,6 +32,7 @@ export const LoginScreen = () => {
 
             <form onSubmit={ handleLogin }>
 
+
                 <input
                     className="auth__input"
                     type="text"
